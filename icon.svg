@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="256" fill="#0b1426"/>
+
+  <!-- Outer ring -->
+  <circle cx="256" cy="256" r="230" fill="none" stroke="#c9a55c" stroke-width="4"/>
+  <circle cx="256" cy="256" r="218" fill="none" stroke="#c9a55c" stroke-width="1" stroke-dasharray="4 6"/>
+
+  <!-- Compass rose: 8 points -->
+  <!-- N/S/E/W major points -->
+  <polygon points="256,56 243,220 256,200 269,220" fill="#c9a55c"/>
+  <polygon points="256,456 243,292 256,312 269,292" fill="#c9a55c"/>
+  <polygon points="56,256 220,243 200,256 220,269" fill="#8a7040"/>
+  <polygon points="456,256 292,243 312,256 292,269" fill="#8a7040"/>
+
+  <!-- Intercardinal minor points -->
+  <polygon points="398,114 278,238 288,252 300,238" fill="#6a5430" opacity="0.9"/>
+  <polygon points="114,114 234,238 224,252 212,238" fill="#6a5430" opacity="0.9"/>
+  <polygon points="114,398 234,274 224,260 212,274" fill="#6a5430" opacity="0.9"/>
+  <polygon points="398,398 278,274 288,260 300,274" fill="#6a5430" opacity="0.9"/>
+
+  <!-- Center hub -->
+  <circle cx="256" cy="256" r="24" fill="#0b1426" stroke="#c9a55c" stroke-width="3"/>
+  <circle cx="256" cy="256" r="10" fill="#c9a55c"/>
+
+  <!-- N label -->
+  <text x="256" y="46" text-anchor="middle" font-family="Georgia, serif" font-size="28" font-weight="bold" fill="#c9a55c">N</text>
+</svg>

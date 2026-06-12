@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1426">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Voice of the Sea">
+  <meta name="description" content="東京ディズニーシー 非公式音声ガイド by たみふるD">
+  <title>Voice of the Sea</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header id="app-header">
+    <div class="title-block">
+      <h1>Voice of the Sea</h1>
+      <small>東京ディズニーシー 非公式音声ガイド</small>
+    </div>
+    <button id="btn-about" aria-label="このアプリについて">ⓘ</button>
+  </header>
+
+  <!-- ===== Main Content ===== -->
+  <main id="main-content">
+
+    <!-- Map Tab -->
+    <section id="map-view" class="tab-view" role="tabpanel" aria-labelledby="tab-map">
+      <div id="map-chips" role="list" aria-label="マップ選択"></div>
+      <div id="map-display">
+        <img id="map-img" src="" alt="" style="display:none;">
+        <p class="map-placeholder" id="map-placeholder">マップを選択してください</p>
+      </div>
+    </section>
+
+    <!-- Guide Tab -->
+    <section id="guide-view" class="tab-view active" role="tabpanel" aria-labelledby="tab-guide">
+      <div id="keypad-display-wrapper">
+        <div id="keypad-display" aria-label="入力ディスプレイ" aria-live="polite">
+          <span id="display-text" style="display:none;"></span>
+          <span id="display-placeholder">番号を入力</span>
+        </div>
+      </div>
+      <div id="error-msg" role="alert" aria-live="assertive"></div>
+      <div id="current-track-label" aria-live="polite"></div>
+      <div id="keypad" role="group" aria-label="キーパッド">
+        <button class="key-btn" data-key="1" aria-label="1">1</button>
+        <button class="key-btn" data-key="2" aria-label="2">2</button>
+        <button class="key-btn" data-key="3" aria-label="3">3</button>
+        <button class="key-btn" data-key="4" aria-label="4">4</button>
+        <button class="key-btn" data-key="5" aria-label="5">5</button>
+        <button class="key-btn" data-key="6" aria-label="6">6</button>
+        <button class="key-btn" data-key="7" aria-label="7">7</button>
+        <button class="key-btn" data-key="8" aria-label="8">8</button>
+        <button class="key-btn" data-key="9" aria-label="9">9</button>
+        <button class="key-btn key-clear" data-key="C" aria-label="Compass (C)">C</button>
+        <button class="key-btn" data-key="0" aria-label="0">0</button>
+        <button class="key-btn key-del" data-key="DEL" aria-label="削除">⌫</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Mini Player ===== -->
+  <div id="mini-player" role="region" aria-label="音声プレイヤー">
+    <div id="player-track-info">
+      <span id="player-track-name">—</span>
+      <div class="player-controls">
+        <button class="ctrl-btn" id="btn-prev" aria-label="前のトラック">⏮</button>
+        <button class="ctrl-btn" id="btn-play-pause" aria-label="再生/一時停止">▶</button>
+        <button class="ctrl-btn" id="btn-next" aria-label="次のトラック">⏭</button>
+      </div>
+    </div>
+    <div id="player-seek-row">
+      <span id="seek-time-current">0:00</span>
+      <input type="range" id="seek-bar" min="0" max="100" value="0" step="0.1" aria-label="シーク">
+      <span id="seek-time-total">0:00</span>
+    </div>
+  </div>
+
+  <!-- ===== Tab Bar ===== -->
+  <nav id="tab-bar" role="tablist" aria-label="メインタブ">
+    <button class="tab-btn" id="tab-map" role="tab" aria-selected="false" aria-controls="map-view">
+      <span class="tab-icon">🗺</span>
+      <span>マップ</span>
+    </button>
+    <button class="tab-btn active" id="tab-guide" role="tab" aria-selected="true" aria-controls="guide-view">
+      <span class="tab-icon">🎧</span>
+      <span>ガイド</span>
+    </button>
+  </nav>
+
+  <!-- ===== About Modal ===== -->
+  <div id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div id="about-modal">
+      <button id="btn-close-modal" aria-label="閉じる">✕</button>
+      <h2 id="modal-title">ご利用にあたって</h2>
+      <div class="gold-divider"></div>
+      <ul>
+        <li>Voice of the Seaは、東京ディズニーシーの七つの海を巡る非公式の音声ガイドです。</li>
+        <li>本コンテンツは、東京ディズニーシー、東京ディズニーリゾート、株式会社オリエンタルランド様とは一切関係ありません。</li>
+        <li>製作者のたみふるDをはじめ、すべての製作者は本コンテンツにより収益を得ていません。</li>
+        <li>音声・画像データの、私的使用を除く二次配布はご遠慮ください。</li>
+        <li>本コンテンツは意図的に、ディズニーパークとしてのストーリーと実際の史実を混同する形で製作されています。</li>
+        <li>マーメイドラグーン「アンダー・ザ・シー」のマップが存在しないことは技術的な問題であり、データに異常はありません。</li>
+        <li>パーク内でのご利用の際は、周囲の安全とイヤホンの音量に十分ご注意ください。</li>
+        <li>【文責 TamifuruD】</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

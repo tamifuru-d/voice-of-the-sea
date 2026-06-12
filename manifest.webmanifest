@@ -1,0 +1,19 @@
+{
+  "name": "Voice of the Sea",
+  "short_name": "Voice of the Sea",
+  "description": "東京ディズニーシー 非公式音声ガイド by たみふるD",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#0b1426",
+  "background_color": "#0b1426",
+  "lang": "ja",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ]
+}

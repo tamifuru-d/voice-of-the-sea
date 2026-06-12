@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Voice of the Sea</title>
+  <style>
+    body { font-family: monospace; background: #111; color: #ddd; padding: 16px; }
+    h1 { color: #c9a55c; font-size: 1.2rem; margin-bottom: 4px; }
+    p  { color: #888; font-size: 0.8rem; margin-bottom: 16px; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.82rem; }
+    th { text-align: left; padding: 6px 8px; background: #222; color: #c9a55c; border-bottom: 1px solid #333; }
+    td { padding: 5px 8px; border-bottom: 1px solid #1e1e1e; vertical-align: middle; }
+    tr:hover td { background: #1a1a1a; }
+    .ok  { color: #5c9; font-weight: bold; }
+    .err { color: #e55; font-weight: bold; }
+    .chk { color: #888; }
+    audio { height: 24px; width: 200px; }
+    h2 { color: #c9a55c; font-size: 0.95rem; margin: 24px 0 8px; border-bottom: 1px solid #333; padding-bottom: 4px; }
+    .legend { font-size: 0.75rem; color: #666; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Voice of the Sea — Admin</h1>
+  <p>data/manifest.json を読み込み、全アセットの存在確認と試聴を行います。このページは公開UIからリンクされていません。</p>
+  <div id="root"><p class="chk">読み込み中…</p></div>
+  <script>
+  (async () => {
+    const root = document.getElementById('root');
+    let manifest;
+    try {
+      const r = await fetch('data/manifest.json');
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      manifest = await r.json();
+    } catch (e) {
+      root.innerHTML = '<p style="color:#e55">manifest.json の読み込み失敗: ' + e.message + '</p>';
+      return;
+    }
+
+    async function check(url) {
+      try {
+        const r = await fetch(url, { method: 'HEAD' });
+        return r.ok;
+      } catch { return false; }
+    }
+
+    function row(code, title, file, isAudio) {
+      const tr = document.createElement('tr');
+      const tdCode  = document.createElement('td'); tdCode.textContent  = code;
+      const tdTitle = document.createElement('td'); tdTitle.textContent = title;
+      const tdFile  = document.createElement('td'); tdFile.textContent  = file;
+      const tdChk   = document.createElement('td'); tdChk.textContent  = '確認中…'; tdChk.className = 'chk';
+      const tdPlay  = document.createElement('td');
+      tr.append(tdCode, tdTitle, tdFile, tdChk, tdPlay);
+
+      check(file).then(ok => {
+        tdChk.textContent = ok ? '○' : '×';
+        tdChk.className   = ok ? 'ok' : 'err';
+        if (ok && isAudio) {
+          const a = document.createElement('audio');
+          a.src = file; a.controls = true; a.preload = 'none';
+          tdPlay.appendChild(a);
+        } else if (ok && !isAudio) {
+          const img = document.createElement('img');
+          img.src = file; img.style.height = '40px'; img.style.borderRadius = '3px';
+          tdPlay.appendChild(img);
+        }
+      });
+      return tr;
+    }
+
+    function section(title, rows) {
+      const h2 = document.createElement('h2'); h2.textContent = title;
+      const tbl = document.createElement('table');
+      const thead = tbl.createTHead();
+      const hr = thead.insertRow();
+      ['コード','タイトル','ファイルパス','存在','プレビュー'].forEach(t => {
+        const th = document.createElement('th'); th.textContent = t; hr.appendChild(th);
+      });
+      const tb = tbl.createTBody();
+      rows.forEach(r => tb.appendChild(r));
+      root.appendChild(h2);
+      root.appendChild(tbl);
+    }
+
+    section('番号トラック (' + manifest.tracks.length + ')',
+      manifest.tracks.map(t => row(t.code, t.title, t.file, true)));
+
+    section('Compassトラック (' + manifest.compass.length + ')',
+      manifest.compass.map(t => row(t.code, t.title, t.file, true)));
+
+    section('マップ (' + manifest.maps.length + ')',
+      manifest.maps.map(m => row(m.id, m.title, m.file, false)));
+  })();
+  </script>
+</body>
+</html>
