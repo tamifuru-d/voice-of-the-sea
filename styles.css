@@ -60,7 +60,12 @@ h1, h2, h3, .serif {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   letter-spacing: 0.02em;
 }
-#btn-about {
+.header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+#btn-about, #btn-geo {
   background: none;
   border: 1px solid var(--gold-dim);
   color: var(--gold);
@@ -73,9 +78,86 @@ h1, h2, h3, .serif {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: background 0.2s;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  font-family: -apple-system, sans-serif;
 }
-#btn-about:hover, #btn-about:active { background: rgba(201,165,92,0.15); }
+#btn-about:hover, #btn-about:active,
+#btn-geo:hover, #btn-geo:active { background: rgba(201,165,92,0.15); }
+#btn-geo[aria-pressed="true"] {
+  background: var(--gold);
+  color: var(--navy);
+  border-color: var(--gold);
+}
+#btn-geo.locating {
+  animation: geo-pulse 1.2s ease-in-out infinite;
+}
+@keyframes geo-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ===== Nearby banner ===== */
+#nearby-banner {
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, var(--navy-mid) 0%, var(--surface) 100%);
+  border-bottom: 1px solid var(--gold-dim);
+  padding: 10px 16px;
+  display: none;
+  align-items: center;
+  gap: 10px;
+  z-index: 90;
+  font-size: 0.85rem;
+}
+#nearby-banner.visible { display: flex; }
+#nearby-banner.changed { animation: nearby-flash 0.6s ease-out; }
+@keyframes nearby-flash {
+  0%   { background: rgba(201,165,92,0.4); }
+  100% { background: linear-gradient(180deg, var(--navy-mid) 0%, var(--surface) 100%); }
+}
+.nearby-icon { font-size: 1.1rem; flex-shrink: 0; }
+.nearby-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  overflow: hidden;
+}
+.nearby-label {
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+}
+#nearby-track {
+  color: var(--gold-light);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#btn-play-nearby {
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  padding: 6px 14px;
+  border-radius: 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: -apple-system, sans-serif;
+}
+#btn-play-nearby:disabled {
+  background: var(--gold-dim);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+body.nearby-active #main-content {
+  padding-top: calc(var(--header-h) + 48px);
+}
 
 /* ===== Main Content ===== */
 #main-content {

@@ -11,247 +11,329 @@
       "code": "01",
       "title": "アクアスフィア",
       "en": "Aquasphere",
-      "file": "audio/01.mp3"
+      "file": "audio/01.mp3",
+      "lat": 35.627029,
+      "lng": 139.889088
     },
     {
       "code": "02",
       "title": "メディテレーニアンハーバー",
       "en": "Mediterranean Harbor",
-      "file": "audio/02.mp3"
+      "file": "audio/02.mp3",
+      "lat": 35.626482,
+      "lng": 139.885933
     },
     {
       "code": "03",
       "title": "パラッツォ・カナル",
       "en": "Palazzo Canal",
-      "file": "audio/03.mp3"
+      "file": "audio/03.mp3",
+      "lat": 35.6258,
+      "lng": 139.8877
     },
     {
       "code": "04",
       "title": "ポンテ・ヴェッキオ",
       "en": "Ponte Vecchio",
-      "file": "audio/04.mp3"
+      "file": "audio/04.mp3",
+      "lat": 35.6259,
+      "lng": 139.8875
     },
     {
       "code": "05",
       "title": "フォートレス・エクスプロレーション",
       "en": "Fortress Explorations",
-      "file": "audio/05.mp3"
+      "file": "audio/05.mp3",
+      "lat": 35.62577,
+      "lng": 139.885185
     },
     {
       "code": "06",
       "title": "ファンタスティック・フライト・ミュージアム",
       "en": "Fantastic Flight Museum",
-      "file": "audio/06.mp3"
+      "file": "audio/06.mp3",
+      "lat": 35.627527,
+      "lng": 139.885732
     },
     {
       "code": "07",
       "title": "アクアダクトブリッジ",
       "en": "Aquaduct Bridge",
-      "file": "audio/07.mp3"
+      "file": "audio/07.mp3",
+      "lat": 35.62735,
+      "lng": 139.886
     },
     {
       "code": "08",
       "title": "商店街",
       "en": "Street",
-      "file": "audio/08.mp3"
+      "file": "audio/08.mp3",
+      "lat": 35.627,
+      "lng": 139.8872
     },
     {
       "code": "09",
       "title": "ポルト・パラディーゾ",
       "en": "Porto Paradiso",
-      "file": "audio/09.mp3"
+      "file": "audio/09.mp3",
+      "lat": 35.6267,
+      "lng": 139.8865
     },
     {
       "code": "10",
       "title": "アメリカンウォーターフロント",
       "en": "American Waterfront",
-      "file": "audio/10.mp3"
+      "file": "audio/10.mp3",
+      "lat": 35.6245,
+      "lng": 139.8878
     },
     {
       "code": "11",
       "title": "デランシーSt.",
       "en": "Delancey St.",
-      "file": "audio/11.mp3"
+      "file": "audio/11.mp3",
+      "lat": 35.624856,
+      "lng": 139.887509
     },
     {
       "code": "12",
       "title": "ブロードウェイ",
       "en": "Broad Way",
-      "file": "audio/12.mp3"
+      "file": "audio/12.mp3",
+      "lat": 35.625084,
+      "lng": 139.888386
     },
     {
       "code": "13",
       "title": "トイビル・トロリーパーク",
       "en": "Toyville Trolley Park",
-      "file": "audio/13.mp3"
+      "file": "audio/13.mp3",
+      "lat": 35.624797,
+      "lng": 139.888671
     },
     {
       "code": "14",
       "title": "ホテルハイタワー",
       "en": "Hotel Hightower",
-      "file": "audio/14.mp3"
+      "file": "audio/14.mp3",
+      "lat": 35.624149,
+      "lng": 139.888138
     },
     {
       "code": "15",
       "title": "ホレイショースクエア",
       "en": "Horatio Square",
-      "file": "audio/15.mp3"
+      "file": "audio/15.mp3",
+      "lat": 35.623979,
+      "lng": 139.887156
     },
     {
       "code": "16",
       "title": "レストラン櫻",
       "en": "Restaurant Sakura",
-      "file": "audio/16.mp3"
+      "file": "audio/16.mp3",
+      "lat": 35.624765,
+      "lng": 139.886965
     },
     {
       "code": "17",
       "title": "ハドソンリバー",
       "en": "Hadson River",
-      "file": "audio/17.mp3"
+      "file": "audio/17.mp3",
+      "lat": 35.623795,
+      "lng": 139.887352
     },
     {
       "code": "18",
       "title": "ケープコッド",
       "en": "Cape Cod",
-      "file": "audio/18.mp3"
+      "file": "audio/18.mp3",
+      "lat": 35.6244,
+      "lng": 139.8852
     },
     {
       "code": "19",
       "title": "ピーコッドSt.",
       "en": "Pequod St.",
-      "file": "audio/19.mp3"
+      "file": "audio/19.mp3",
+      "lat": 35.6242,
+      "lng": 139.8848
     },
     {
       "code": "20",
       "title": "ポートディスカバリー",
       "en": "Port Discovery",
-      "file": "audio/20.mp3"
+      "file": "audio/20.mp3",
+      "lat": 35.6248,
+      "lng": 139.8832
     },
     {
       "code": "21",
       "title": "海洋生物研究所",
       "en": "Marine Life Institute",
-      "file": "audio/21.mp3"
+      "file": "audio/21.mp3",
+      "lat": 35.624913,
+      "lng": 139.882534
     },
     {
       "code": "22",
       "title": "ミステリアスアイランド",
       "en": "Mysterious Island",
-      "file": "audio/22.mp3"
+      "file": "audio/22.mp3",
+      "lat": 35.626227,
+      "lng": 139.88455
     },
     {
       "code": "23",
       "title": "地底旅行",
       "en": "Journey to the Center of the Earth",
-      "file": "audio/23.mp3"
+      "file": "audio/23.mp3",
+      "lat": 35.6259,
+      "lng": 139.8844
     },
     {
       "code": "24",
       "title": "発明品",
       "en": "Inventions by Nemo",
-      "file": "audio/24.mp3"
+      "file": "audio/24.mp3",
+      "lat": 35.626385,
+      "lng": 139.884684
     },
     {
       "code": "25",
       "title": "海底探検",
       "en": "20,000 Leagues Under the Sea",
-      "file": "audio/25.mp3"
+      "file": "audio/25.mp3",
+      "lat": 35.626385,
+      "lng": 139.884684
     },
     {
       "code": "26",
       "title": "プロメテウス火山",
       "en": "Mt.Prometheus",
-      "file": "audio/26.mp3"
+      "file": "audio/26.mp3",
+      "lat": 35.625696,
+      "lng": 139.884547
     },
     {
       "code": "27",
       "title": "島の生活",
       "en": "Crew's Life",
-      "file": "audio/27.mp3"
+      "file": "audio/27.mp3",
+      "lat": 35.6264,
+      "lng": 139.8845
     },
     {
       "code": "28",
       "title": "潜水艦ノーチラス号",
       "en": "The Nautilus",
-      "file": "audio/28.mp3"
+      "file": "audio/28.mp3",
+      "lat": 35.626253,
+      "lng": 139.884275
     },
     {
       "code": "29",
       "title": "マーメイドラグーン",
       "en": "Mermaid Lagoon",
-      "file": "audio/29.mp3"
+      "file": "audio/29.mp3",
+      "lat": 35.626989,
+      "lng": 139.882484
     },
     {
       "code": "30",
       "title": "アンダー・ザ・シー",
       "en": "Under the Sea",
-      "file": "audio/30.mp3"
+      "file": "audio/30.mp3",
+      "lat": 35.62622,
+      "lng": 139.883053
     },
     {
       "code": "31",
       "title": "セバスチャン",
       "en": "Sebastian",
-      "file": "audio/31.mp3"
+      "file": "audio/31.mp3",
+      "lat": 35.626559,
+      "lng": 139.882634
     },
     {
       "code": "32",
       "title": "アバブ・ザ・シー",
       "en": "",
-      "file": "audio/32.mp3"
+      "file": "audio/32.mp3",
+      "lat": 35.626989,
+      "lng": 139.882484
     },
     {
       "code": "33",
       "title": "アラビアンコースト",
       "en": "Arabian Coast",
-      "file": "audio/33.mp3"
+      "file": "audio/33.mp3",
+      "lat": 35.627816,
+      "lng": 139.881729
     },
     {
       "code": "34",
       "title": "カスバ・フードコートと市場",
       "en": "Casbah Food Court and Souk",
-      "file": "audio/34.mp3"
+      "file": "audio/34.mp3",
+      "lat": 35.628461,
+      "lng": 139.882695
     },
     {
       "code": "35",
       "title": "港",
       "en": "Port of Arabian Coast",
-      "file": "audio/35.mp3"
+      "file": "audio/35.mp3",
+      "lat": 35.628,
+      "lng": 139.8822
     },
     {
       "code": "36",
       "title": "ロストリバーデルタ",
       "en": "Lost River Delta",
-      "file": "audio/36.mp3"
+      "file": "audio/36.mp3",
+      "lat": 35.626806,
+      "lng": 139.881804
     },
     {
       "code": "37",
       "title": "ユカタン・ベースキャンプ・グリル",
       "en": "Yucatan Base Camp Grill",
-      "file": "audio/37.mp3"
+      "file": "audio/37.mp3",
+      "lat": 35.627249,
+      "lng": 139.881234
     },
     {
       "code": "38",
       "title": "クリスタルスカルの魔宮",
       "en": "Temple of the Crystal Skull",
-      "file": "audio/38.mp3"
+      "file": "audio/38.mp3",
+      "lat": 35.626713,
+      "lng": 139.880613
     },
     {
       "code": "39",
       "title": "ロストリバーの橋たち",
       "en": "Bridges",
-      "file": "audio/39.mp3"
+      "file": "audio/39.mp3",
+      "lat": 35.6265,
+      "lng": 139.8815
     },
     {
       "code": "40",
       "title": "ミゲルズ・エルドラド・キャンティーナ",
       "en": "Michael's El Dorado Cantina",
-      "file": "audio/40.mp3"
+      "file": "audio/40.mp3",
+      "lat": 35.626385,
+      "lng": 139.882176
     },
     {
       "code": "41",
       "title": "トランジットスチーマーライン",
       "en": "Transit Steamer Line",
-      "file": "audio/41.mp3"
+      "file": "audio/41.mp3",
+      "lat": 35.6255,
+      "lng": 139.8849
     },
     {
       "code": "94",
@@ -264,37 +346,51 @@
     {
       "code": "C1",
       "title": "メディテレーニアンハーバー",
-      "file": "audio/c1.mp3"
+      "file": "audio/c1.mp3",
+      "lat": 35.626482,
+      "lng": 139.885933
     },
     {
       "code": "C2",
       "title": "アメリカンウォーターフロント",
-      "file": "audio/c2.mp3"
+      "file": "audio/c2.mp3",
+      "lat": 35.6245,
+      "lng": 139.8878
     },
     {
       "code": "C3",
       "title": "ポートディスカバリー",
-      "file": "audio/c3.mp3"
+      "file": "audio/c3.mp3",
+      "lat": 35.6248,
+      "lng": 139.8832
     },
     {
       "code": "C4",
       "title": "ミステリアスアイランド",
-      "file": "audio/c4.mp3"
+      "file": "audio/c4.mp3",
+      "lat": 35.626227,
+      "lng": 139.88455
     },
     {
       "code": "C5",
       "title": "マーメイドラグーン",
-      "file": "audio/c5.mp3"
+      "file": "audio/c5.mp3",
+      "lat": 35.626989,
+      "lng": 139.882484
     },
     {
       "code": "C6",
       "title": "アラビアンコースト",
-      "file": "audio/c6.mp3"
+      "file": "audio/c6.mp3",
+      "lat": 35.627816,
+      "lng": 139.881729
     },
     {
       "code": "C7",
       "title": "ロストリバーデルタ",
-      "file": "audio/c7.mp3"
+      "file": "audio/c7.mp3",
+      "lat": 35.626806,
+      "lng": 139.881804
     }
   ],
   "maps": [

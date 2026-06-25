@@ -28,13 +28,15 @@ Finderでこのフォルダ（`~/Projects/voice-of-the-sea`）を開き、
 
 2. **data/manifest.json にエントリを追加**
 
-   番号トラックの例:
+   番号トラックの例（`lat`/`lng`は省略可。指定すると現在地ナビの対象になる）:
    ```json
    {
      "code": "42",
      "title": "トラック名（日本語）",
      "en": "Track Name (English)",
-     "file": "audio/42.mp3"
+     "file": "audio/42.mp3",
+     "lat": 35.626482,
+     "lng": 139.885933
    }
    ```
    Compassトラックの例:

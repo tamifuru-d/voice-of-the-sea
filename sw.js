@@ -8,7 +8,7 @@
 
 'use strict';
 
-const CACHE_VERSION = 'vots-v1';
+const CACHE_VERSION = 'vots-v3';
 const SHELL_ASSETS = [
   './',
   './index.html',
@@ -22,7 +22,7 @@ const SHELL_ASSETS = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_VERSION).then(cache => {
-      return cache.addAll(SHELL_ASSETS);
+      return cache.addAll(SHELL_ASSETS.map(u => new Request(u, { cache: 'reload' })));
     }).then(() => self.skipWaiting())
   );
 });

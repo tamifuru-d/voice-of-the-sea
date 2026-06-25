@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="Voice of the Sea">
   <meta name="description" content="東京ディズニーシー 非公式音声ガイド by たみふるD">
   <title>Voice of the Sea</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icon.svg">
@@ -22,8 +22,21 @@
       <h1>Voice of the Sea</h1>
       <small>東京ディズニーシー 非公式音声ガイド</small>
     </div>
-    <button id="btn-about" aria-label="このアプリについて">ⓘ</button>
+    <div class="header-actions">
+      <button id="btn-geo" aria-label="現在地でスポットを探す" aria-pressed="false" title="現在地でスポットを探す">📍</button>
+      <button id="btn-about" aria-label="このアプリについて">ⓘ</button>
+    </div>
   </header>
+
+  <!-- ===== Nearby banner (shown when geolocation is on) ===== -->
+  <div id="nearby-banner" role="status" aria-live="polite">
+    <span class="nearby-icon">📍</span>
+    <span class="nearby-text">
+      <span class="nearby-label">近くのスポット</span>
+      <span id="nearby-track">—</span>
+    </span>
+    <button id="btn-play-nearby" aria-label="近くのスポットを再生">▶ 再生</button>
+  </div>
 
   <!-- ===== Main Content ===== -->
   <main id="main-content">
@@ -107,12 +120,13 @@
         <li>音声・画像データの、私的使用を除く二次配布はご遠慮ください。</li>
         <li>本コンテンツは意図的に、ディズニーパークとしてのストーリーと実際の史実を混同する形で製作されています。</li>
         <li>マーメイドラグーン「アンダー・ザ・シー」のマップが存在しないことは技術的な問題であり、データに異常はありません。</li>
+        <li>ヘッダーの📍ボタンで現在地から最も近いスポットを表示できます。位置情報は端末内のみで利用され、外部に送信されません。屋内アトラクションではGPSが届きにくいため、その場合はキーパッドで番号入力をご利用ください。</li>
         <li>パーク内でのご利用の際は、周囲の安全とイヤホンの音量に十分ご注意ください。</li>
         <li>【文責 TamifuruD】</li>
       </ul>
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>

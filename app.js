@@ -39,6 +39,10 @@ const dom = {
   btnAbout:          document.getElementById('btn-about'),
   modalOverlay:      document.getElementById('modal-overlay'),
   btnCloseModal:     document.getElementById('btn-close-modal'),
+  btnGeo:            document.getElementById('btn-geo'),
+  nearbyBanner:      document.getElementById('nearby-banner'),
+  nearbyTrack:       document.getElementById('nearby-track'),
+  btnPlayNearby:     document.getElementById('btn-play-nearby'),
 };
 
 /* ===== Utility ===== */
@@ -397,6 +401,113 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+/* ===== Geolocation: nearest spot ===== */
+let geoWatchId = null;
+let nearbyTrack = null;       // last reported nearest track
+const NEARBY_MAX_M = 500;     // beyond this, hide banner
+
+function haversine(la1, lo1, la2, lo2) {
+  const R = 6371000;
+  const toRad = d => d * Math.PI / 180;
+  const dLat = toRad(la2 - la1);
+  const dLon = toRad(lo2 - lo1);
+  const a = Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(la1)) * Math.cos(toRad(la2)) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+function findNearest(lat, lng) {
+  if (!manifest) return null;
+  let best = null;
+  for (const t of manifest.tracks) {
+    if (typeof t.lat !== 'number') continue;
+    const d = haversine(lat, lng, t.lat, t.lng);
+    if (!best || d < best.dist) best = { track: { ...t, series: 'track' }, dist: d };
+  }
+  return best;
+}
+
+function fmtDist(m) {
+  if (m < 100) return `約${Math.round(m / 5) * 5}m`;
+  if (m < 1000) return `約${Math.round(m / 10) * 10}m`;
+  return `約${(m / 1000).toFixed(1)}km`;
+}
+
+function updateNearby(pos) {
+  const { latitude, longitude } = pos.coords;
+  const best = findNearest(latitude, longitude);
+  dom.btnGeo.classList.remove('locating');
+
+  if (!best || best.dist > NEARBY_MAX_M) {
+    nearbyTrack = null;
+    dom.nearbyTrack.textContent = 'パーク内のスポットを検出していません';
+    dom.btnPlayNearby.disabled = true;
+    dom.nearbyBanner.classList.add('visible');
+    document.body.classList.add('nearby-active');
+    return;
+  }
+
+  const changed = !nearbyTrack || nearbyTrack.code !== best.track.code;
+  nearbyTrack = best.track;
+  dom.nearbyTrack.textContent = `${best.track.code} ${best.track.title} (${fmtDist(best.dist)})`;
+  dom.btnPlayNearby.disabled = false;
+  dom.nearbyBanner.classList.add('visible');
+  document.body.classList.add('nearby-active');
+  if (changed) {
+    dom.nearbyBanner.classList.remove('changed');
+    void dom.nearbyBanner.offsetWidth;
+    dom.nearbyBanner.classList.add('changed');
+  }
+}
+
+function geoError(err) {
+  dom.btnGeo.classList.remove('locating');
+  nearbyTrack = null;
+  dom.btnPlayNearby.disabled = true;
+  const msg = err.code === err.PERMISSION_DENIED
+    ? '位置情報の利用が許可されていません'
+    : '位置情報を取得できません';
+  dom.nearbyTrack.textContent = msg;
+  dom.nearbyBanner.classList.add('visible');
+  document.body.classList.add('nearby-active');
+}
+
+function startGeo() {
+  if (!('geolocation' in navigator)) {
+    alert('このブラウザは位置情報に対応していません');
+    return;
+  }
+  dom.btnGeo.setAttribute('aria-pressed', 'true');
+  dom.btnGeo.classList.add('locating');
+  try { localStorage.setItem('vots-geo-enabled', '1'); } catch (_) {}
+  geoWatchId = navigator.geolocation.watchPosition(updateNearby, geoError, {
+    enableHighAccuracy: true,
+    maximumAge: 5000,
+    timeout: 30000,
+  });
+}
+
+function stopGeo() {
+  if (geoWatchId !== null) {
+    navigator.geolocation.clearWatch(geoWatchId);
+    geoWatchId = null;
+  }
+  dom.btnGeo.setAttribute('aria-pressed', 'false');
+  dom.btnGeo.classList.remove('locating');
+  dom.nearbyBanner.classList.remove('visible', 'changed');
+  document.body.classList.remove('nearby-active');
+  nearbyTrack = null;
+  try { localStorage.setItem('vots-geo-enabled', '0'); } catch (_) {}
+}
+
+dom.btnGeo.addEventListener('click', () => {
+  if (geoWatchId === null) startGeo(); else stopGeo();
+});
+
+dom.btnPlayNearby.addEventListener('click', () => {
+  if (nearbyTrack) loadTrack(nearbyTrack, true);
+});
+
 /* ===== Service Worker registration ===== */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -409,7 +520,7 @@ if ('serviceWorker' in navigator) {
 /* ===== Init ===== */
 async function init() {
   try {
-    const res = await fetch('data/manifest.json');
+    const res = await fetch('data/manifest.json', { cache: 'no-cache' });
     if (!res.ok) throw new Error('manifest fetch failed');
     manifest = await res.json();
   } catch (e) {
@@ -431,6 +542,11 @@ async function init() {
 
   // Restore tab from URL hash
   restoreTabFromHash();
+
+  // Restore geolocation toggle
+  try {
+    if (localStorage.getItem('vots-geo-enabled') === '1') startGeo();
+  } catch (_) {}
 }
 
 init();
