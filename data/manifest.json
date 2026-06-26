@@ -20,16 +20,16 @@
       "title": "メディテレーニアンハーバー",
       "en": "Mediterranean Harbor",
       "file": "audio/02.mp3",
-      "lat": 35.626482,
-      "lng": 139.885933
+      "lat": 35.626579,
+      "lng": 139.887303
     },
     {
       "code": "03",
       "title": "パラッツォ・カナル",
       "en": "Palazzo Canal",
       "file": "audio/03.mp3",
-      "lat": 35.6258,
-      "lng": 139.8877
+      "lat": 35.626543,
+      "lng": 139.888072
     },
     {
       "code": "04",
@@ -68,24 +68,24 @@
       "title": "商店街",
       "en": "Street",
       "file": "audio/08.mp3",
-      "lat": 35.627,
-      "lng": 139.8872
+      "lat": 35.62706,
+      "lng": 139.88637
     },
     {
       "code": "09",
       "title": "ポルト・パラディーゾ",
       "en": "Porto Paradiso",
       "file": "audio/09.mp3",
-      "lat": 35.6267,
-      "lng": 139.8865
+      "lat": 35.626773,
+      "lng": 139.886922
     },
     {
       "code": "10",
       "title": "アメリカンウォーターフロント",
       "en": "American Waterfront",
       "file": "audio/10.mp3",
-      "lat": 35.6245,
-      "lng": 139.8878
+      "lat": 35.625464,
+      "lng": 139.88725
     },
     {
       "code": "11",
@@ -132,16 +132,16 @@
       "title": "レストラン櫻",
       "en": "Restaurant Sakura",
       "file": "audio/16.mp3",
-      "lat": 35.624765,
-      "lng": 139.886965
+      "lat": 35.624972,
+      "lng": 139.887076
     },
     {
       "code": "17",
       "title": "ハドソンリバー",
       "en": "Hadson River",
       "file": "audio/17.mp3",
-      "lat": 35.623795,
-      "lng": 139.887352
+      "lat": 35.624,
+      "lng": 139.8865
     },
     {
       "code": "18",
@@ -156,32 +156,32 @@
       "title": "ピーコッドSt.",
       "en": "Pequod St.",
       "file": "audio/19.mp3",
-      "lat": 35.6242,
-      "lng": 139.8848
+      "lat": 35.623987,
+      "lng": 139.884616
     },
     {
       "code": "20",
       "title": "ポートディスカバリー",
       "en": "Port Discovery",
       "file": "audio/20.mp3",
-      "lat": 35.6248,
-      "lng": 139.8832
+      "lat": 35.62475,
+      "lng": 139.884358
     },
     {
       "code": "21",
       "title": "海洋生物研究所",
       "en": "Marine Life Institute",
       "file": "audio/21.mp3",
-      "lat": 35.624913,
-      "lng": 139.882534
+      "lat": 35.625047,
+      "lng": 139.883287
     },
     {
       "code": "22",
       "title": "ミステリアスアイランド",
       "en": "Mysterious Island",
       "file": "audio/22.mp3",
-      "lat": 35.626227,
-      "lng": 139.88455
+      "lat": 35.6259,
+      "lng": 139.88335
     },
     {
       "code": "23",
@@ -196,8 +196,8 @@
       "title": "発明品",
       "en": "Inventions by Nemo",
       "file": "audio/24.mp3",
-      "lat": 35.626385,
-      "lng": 139.884684
+      "lat": 35.62635,
+      "lng": 139.8843
     },
     {
       "code": "25",
@@ -212,32 +212,32 @@
       "title": "プロメテウス火山",
       "en": "Mt.Prometheus",
       "file": "audio/26.mp3",
-      "lat": 35.625696,
-      "lng": 139.884547
+      "lat": 35.6259,
+      "lng": 139.885
     },
     {
       "code": "27",
       "title": "島の生活",
       "en": "Crew's Life",
       "file": "audio/27.mp3",
-      "lat": 35.6264,
-      "lng": 139.8845
+      "lat": 35.62621,
+      "lng": 139.884011
     },
     {
       "code": "28",
       "title": "潜水艦ノーチラス号",
       "en": "The Nautilus",
       "file": "audio/28.mp3",
-      "lat": 35.626253,
-      "lng": 139.884275
+      "lat": 35.62621,
+      "lng": 139.884011
     },
     {
       "code": "29",
       "title": "マーメイドラグーン",
       "en": "Mermaid Lagoon",
       "file": "audio/29.mp3",
-      "lat": 35.626989,
-      "lng": 139.882484
+      "lat": 35.6267,
+      "lng": 139.8829
     },
     {
       "code": "30",
