@@ -339,15 +339,29 @@ function initLeaflet() {
   const pts = manifest.tracks.filter(t => typeof t.lat === 'number');
   if (pts.length === 0) return;
 
-  leafletMap = L.map('map-leaflet', { zoomControl: true, attributionControl: true });
+  leafletMap = L.map('map-leaflet', {
+    zoomControl: true,
+    attributionControl: true,
+    rotate: true,
+    bearing: 90,
+    rotateControl: false,
+    touchRotate: true,
+    center: [35.6263, 139.8845],
+    zoom: 16,
+  });
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
     maxZoom: 19,
     minZoom: 15,
   }).addTo(leafletMap);
 
-  const bounds = L.latLngBounds(pts.map(t => [t.lat, t.lng]));
-  leafletMap.fitBounds(bounds, { padding: [30, 30] });
+  // Fit to all markers after the map has a real size
+  setTimeout(() => {
+    if (!leafletMap) return;
+    const bounds = L.latLngBounds(pts.map(t => [t.lat, t.lng]));
+    leafletMap.invalidateSize();
+    leafletMap.fitBounds(bounds, { padding: [40, 40] });
+  }, 300);
 
   for (const t of pts) {
     const marker = L.marker([t.lat, t.lng], { icon: makeSpotIcon(t.code, false), title: `${t.code} ${t.title}` }).addTo(leafletMap);

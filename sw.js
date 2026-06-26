@@ -8,7 +8,7 @@
 
 'use strict';
 
-const CACHE_VERSION = 'vots-v4';
+const CACHE_VERSION = 'vots-v5';
 const SHELL_ASSETS = [
   './',
   './index.html',
@@ -18,6 +18,7 @@ const SHELL_ASSETS = [
   './icon.svg',
   './vendor/leaflet/leaflet.css',
   './vendor/leaflet/leaflet.js',
+  './vendor/leaflet/leaflet-rotate-src.js',
 ];
 
 /* ===== Install: precache app shell ===== */
