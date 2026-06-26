@@ -20,15 +20,15 @@
       "title": "メディテレーニアンハーバー",
       "en": "Mediterranean Harbor",
       "file": "audio/02.mp3",
-      "lat": 35.626579,
-      "lng": 139.887303
+      "lat": 35.626882,
+      "lng": 139.887937
     },
     {
       "code": "03",
       "title": "パラッツォ・カナル",
       "en": "Palazzo Canal",
       "file": "audio/03.mp3",
-      "lat": 35.626543,
+      "lat": 35.6264,
       "lng": 139.888072
     },
     {
@@ -76,8 +76,8 @@
       "title": "ポルト・パラディーゾ",
       "en": "Porto Paradiso",
       "file": "audio/09.mp3",
-      "lat": 35.626773,
-      "lng": 139.886922
+      "lat": 35.626579,
+      "lng": 139.887303
     },
     {
       "code": "10",
@@ -180,8 +180,8 @@
       "title": "ミステリアスアイランド",
       "en": "Mysterious Island",
       "file": "audio/22.mp3",
-      "lat": 35.6259,
-      "lng": 139.88335
+      "lat": 35.62555,
+      "lng": 139.883349
     },
     {
       "code": "23",
@@ -196,8 +196,8 @@
       "title": "発明品",
       "en": "Inventions by Nemo",
       "file": "audio/24.mp3",
-      "lat": 35.62635,
-      "lng": 139.8843
+      "lat": 35.626227,
+      "lng": 139.88455
     },
     {
       "code": "25",
@@ -212,16 +212,16 @@
       "title": "プロメテウス火山",
       "en": "Mt.Prometheus",
       "file": "audio/26.mp3",
-      "lat": 35.6259,
-      "lng": 139.885
+      "lat": 35.626684,
+      "lng": 139.884277
     },
     {
       "code": "27",
       "title": "島の生活",
       "en": "Crew's Life",
       "file": "audio/27.mp3",
-      "lat": 35.62621,
-      "lng": 139.884011
+      "lat": 35.626447,
+      "lng": 139.884144
     },
     {
       "code": "28",
@@ -236,16 +236,16 @@
       "title": "マーメイドラグーン",
       "en": "Mermaid Lagoon",
       "file": "audio/29.mp3",
-      "lat": 35.6267,
-      "lng": 139.8829
+      "lat": 35.6272,
+      "lng": 139.8819
     },
     {
       "code": "30",
       "title": "アンダー・ザ・シー",
       "en": "Under the Sea",
       "file": "audio/30.mp3",
-      "lat": 35.62622,
-      "lng": 139.883053
+      "lat": 35.626987,
+      "lng": 139.882956
     },
     {
       "code": "31",
@@ -268,15 +268,15 @@
       "title": "アラビアンコースト",
       "en": "Arabian Coast",
       "file": "audio/33.mp3",
-      "lat": 35.627816,
-      "lng": 139.881729
+      "lat": 35.627778,
+      "lng": 139.882845
     },
     {
       "code": "34",
       "title": "カスバ・フードコートと市場",
       "en": "Casbah Food Court and Souk",
       "file": "audio/34.mp3",
-      "lat": 35.628461,
+      "lat": 35.6283,
       "lng": 139.882695
     },
     {
@@ -284,7 +284,7 @@
       "title": "港",
       "en": "Port of Arabian Coast",
       "file": "audio/35.mp3",
-      "lat": 35.628,
+      "lat": 35.62815,
       "lng": 139.8822
     },
     {
@@ -292,24 +292,24 @@
       "title": "ロストリバーデルタ",
       "en": "Lost River Delta",
       "file": "audio/36.mp3",
-      "lat": 35.626806,
-      "lng": 139.881804
+      "lat": 35.62815,
+      "lng": 139.881094
     },
     {
       "code": "37",
       "title": "ユカタン・ベースキャンプ・グリル",
       "en": "Yucatan Base Camp Grill",
       "file": "audio/37.mp3",
-      "lat": 35.627249,
-      "lng": 139.881234
+      "lat": 35.6275,
+      "lng": 139.8818
     },
     {
       "code": "38",
       "title": "クリスタルスカルの魔宮",
       "en": "Temple of the Crystal Skull",
       "file": "audio/38.mp3",
-      "lat": 35.626713,
-      "lng": 139.880613
+      "lat": 35.626614,
+      "lng": 139.881352
     },
     {
       "code": "39",
@@ -317,23 +317,23 @@
       "en": "Bridges",
       "file": "audio/39.mp3",
       "lat": 35.6265,
-      "lng": 139.8815
+      "lng": 139.8817
     },
     {
       "code": "40",
       "title": "ミゲルズ・エルドラド・キャンティーナ",
       "en": "Michael's El Dorado Cantina",
       "file": "audio/40.mp3",
-      "lat": 35.626385,
-      "lng": 139.882176
+      "lat": 35.62637,
+      "lng": 139.882075
     },
     {
       "code": "41",
       "title": "トランジットスチーマーライン",
       "en": "Transit Steamer Line",
       "file": "audio/41.mp3",
-      "lat": 35.6255,
-      "lng": 139.8849
+      "lat": 35.62815,
+      "lng": 139.881094
     },
     {
       "code": "94",
