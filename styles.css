@@ -169,65 +169,118 @@ body.nearby-active #main-content {
 .tab-view { display: none; }
 .tab-view.active { display: block; }
 
-/* ===== Map Tab ===== */
-#map-chips {
-  display: flex;
-  gap: 8px;
-  padding: 12px 16px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  background: linear-gradient(180deg, var(--navy-mid) 0%, var(--surface) 100%);
-  border-bottom: 1px solid rgba(201,165,92,0.2);
-  position: sticky;
+/* ===== Map Tab (Leaflet) ===== */
+#map-view.active {
+  display: block;
+  position: fixed;
   top: var(--header-h);
-  z-index: 50;
+  left: 0; right: 0;
+  bottom: var(--tab-h);
+  padding: 0;
+  margin: 0;
 }
-#map-chips::-webkit-scrollbar { display: none; }
-.map-chip {
-  flex-shrink: 0;
-  background: var(--surface-raised);
-  border: 1px solid var(--gold-dim);
-  color: var(--text-muted);
-  border-radius: 20px;
-  padding: 6px 14px;
-  font-size: 0.78rem;
-  cursor: pointer;
-  transition: all 0.18s;
-  white-space: nowrap;
-}
-.map-chip:hover, .map-chip:active {
-  background: rgba(201,165,92,0.15);
-  color: var(--gold-light);
-  border-color: var(--gold);
-}
-.map-chip.selected {
-  background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold) 100%);
-  color: var(--navy);
-  border-color: var(--gold);
-  font-weight: 600;
+body.has-player #map-view.active { bottom: calc(var(--tab-h) + var(--player-h)); }
+body.nearby-active #map-view.active { top: calc(var(--header-h) + 48px); }
+#map-leaflet {
+  width: 100%;
+  height: 100%;
+  background: #0a1a2c;
 }
 
-#map-display {
-  padding: 16px;
+/* Custom spot markers */
+.spot-marker { background: none; border: none; }
+.spot-pin {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+  color: var(--navy);
+  border: 2px solid var(--navy);
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: flex-start;
-  min-height: 200px;
+  font-weight: 700;
+  font-size: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,165,92,0.3);
+  transition: transform 0.15s, box-shadow 0.15s;
 }
-#map-img {
-  width: 100%;
-  max-width: 720px;
-  height: auto;
-  border-radius: 8px;
-  border: 1px solid rgba(201,165,92,0.25);
+.spot-marker:hover .spot-pin, .spot-marker:active .spot-pin {
+  transform: scale(1.15);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 0 0 2px var(--gold-light);
+}
+.spot-pin.playing {
+  background: linear-gradient(135deg, #fff 0%, var(--gold-light) 100%);
+  animation: pin-pulse 1.5s ease-in-out infinite;
+}
+@keyframes pin-pulse {
+  0%, 100% { box-shadow: 0 2px 5px rgba(0,0,0,0.4), 0 0 0 0 rgba(224,192,122,0.6); }
+  50%      { box-shadow: 0 2px 5px rgba(0,0,0,0.4), 0 0 0 8px rgba(224,192,122,0); }
+}
+
+/* User location marker */
+.user-marker { background: none; border: none; }
+.user-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #4a9eff;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px rgba(74,158,255,0.4), 0 2px 6px rgba(0,0,0,0.4);
+  animation: user-pulse 2s ease-in-out infinite;
+}
+@keyframes user-pulse {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(74,158,255,0.4), 0 0 0 0 rgba(74,158,255,0.5), 0 2px 6px rgba(0,0,0,0.4); }
+  50%      { box-shadow: 0 0 0 2px rgba(74,158,255,0.4), 0 0 0 14px rgba(74,158,255,0), 0 2px 6px rgba(0,0,0,0.4); }
+}
+
+/* Leaflet overrides: dark theme tweaks */
+.leaflet-control-attribution {
+  background: rgba(11,20,38,0.85) !important;
+  color: var(--text-muted) !important;
+  font-size: 10px !important;
+}
+.leaflet-control-attribution a {
+  color: var(--gold-light) !important;
+}
+.leaflet-popup-content-wrapper {
+  background: var(--surface-raised) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--gold-dim) !important;
+  border-radius: 8px !important;
+}
+.leaflet-popup-tip { background: var(--surface-raised) !important; }
+.leaflet-popup-content { margin: 12px 14px !important; font-size: 0.9rem !important; }
+.popup-title {
+  font-family: Georgia, 'Hiragino Mincho ProN', serif;
+  color: var(--gold-light);
+  font-size: 1rem;
+  margin-bottom: 6px;
   display: block;
 }
-.map-placeholder {
+.popup-en {
   color: var(--text-muted);
-  font-size: 0.9rem;
-  padding: 40px 0;
-  text-align: center;
+  font-size: 0.75rem;
+  display: block;
+  margin-bottom: 8px;
 }
+.popup-play {
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  padding: 6px 14px;
+  border-radius: 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: -apple-system, sans-serif;
+}
+.leaflet-bar a {
+  background-color: var(--surface-raised) !important;
+  color: var(--gold) !important;
+  border-bottom-color: var(--gold-dim) !important;
+}
+.leaflet-bar a:hover { background-color: var(--navy-mid) !important; }
 
 /* ===== Guide Tab ===== */
 #guide-view.active {

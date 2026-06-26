@@ -8,7 +8,7 @@
 
 'use strict';
 
-const CACHE_VERSION = 'vots-v3';
+const CACHE_VERSION = 'vots-v4';
 const SHELL_ASSETS = [
   './',
   './index.html',
@@ -16,6 +16,8 @@ const SHELL_ASSETS = [
   './app.js',
   './data/manifest.json',
   './icon.svg',
+  './vendor/leaflet/leaflet.css',
+  './vendor/leaflet/leaflet.js',
 ];
 
 /* ===== Install: precache app shell ===== */
@@ -47,8 +49,8 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   if (url.origin !== self.location.origin) return;
 
-  // audio/ and maps/: cache-first
-  if (pathname.includes('/audio/') || pathname.includes('/maps/')) {
+  // audio/: cache-first
+  if (pathname.includes('/audio/')) {
     event.respondWith(cacheFirst(event.request));
     return;
   }

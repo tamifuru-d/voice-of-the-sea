@@ -84,13 +84,10 @@
     }
 
     section('番号トラック (' + manifest.tracks.length + ')',
-      manifest.tracks.map(t => row(t.code, t.title, t.file, true)));
+      manifest.tracks.map(t => row(t.code, t.title + (typeof t.lat === 'number' ? ` [${t.lat.toFixed(4)},${t.lng.toFixed(4)}]` : ' [座標なし]'), t.file, true)));
 
     section('Compassトラック (' + manifest.compass.length + ')',
       manifest.compass.map(t => row(t.code, t.title, t.file, true)));
-
-    section('マップ (' + manifest.maps.length + ')',
-      manifest.maps.map(m => row(m.id, m.title, m.file, false)));
   })();
   </script>
 </body>

@@ -9,7 +9,8 @@
   <meta name="apple-mobile-web-app-title" content="Voice of the Sea">
   <meta name="description" content="東京ディズニーシー 非公式音声ガイド by たみふるD">
   <title>Voice of the Sea</title>
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="styles.css?v=3">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icon.svg">
@@ -43,11 +44,7 @@
 
     <!-- Map Tab -->
     <section id="map-view" class="tab-view" role="tabpanel" aria-labelledby="tab-map">
-      <div id="map-chips" role="list" aria-label="マップ選択"></div>
-      <div id="map-display">
-        <img id="map-img" src="" alt="" style="display:none;">
-        <p class="map-placeholder" id="map-placeholder">マップを選択してください</p>
-      </div>
+      <div id="map-leaflet" aria-label="東京ディズニーシー スポット地図"></div>
     </section>
 
     <!-- Guide Tab -->
@@ -119,14 +116,16 @@
         <li>製作者のたみふるDをはじめ、すべての製作者は本コンテンツにより収益を得ていません。</li>
         <li>音声・画像データの、私的使用を除く二次配布はご遠慮ください。</li>
         <li>本コンテンツは意図的に、ディズニーパークとしてのストーリーと実際の史実を混同する形で製作されています。</li>
-        <li>マーメイドラグーン「アンダー・ザ・シー」のマップが存在しないことは技術的な問題であり、データに異常はありません。</li>
-        <li>ヘッダーの📍ボタンで現在地から最も近いスポットを表示できます。位置情報は端末内のみで利用され、外部に送信されません。屋内アトラクションではGPSが届きにくいため、その場合はキーパッドで番号入力をご利用ください。</li>
+        <li>マップタブのスポット位置はおおよその目安です。屋内アトラクションでは位置情報が届きにくいため、その場合はキーパッドで番号入力をご利用ください。</li>
+        <li>ヘッダーの📍ボタンで現在地から最も近いスポットを表示できます。位置情報は端末内のみで利用され、外部に送信されません。</li>
+        <li>地図の表示には<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>のデータを使用しています。</li>
         <li>パーク内でのご利用の際は、周囲の安全とイヤホンの音量に十分ご注意ください。</li>
         <li>【文責 TamifuruD】</li>
       </ul>
     </div>
   </div>
 
-  <script src="app.js?v=2"></script>
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>

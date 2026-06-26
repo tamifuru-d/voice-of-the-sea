@@ -20,9 +20,7 @@ const dom = {
   guideView:         document.getElementById('guide-view'),
   tabMap:            document.getElementById('tab-map'),
   tabGuide:          document.getElementById('tab-guide'),
-  mapChips:          document.getElementById('map-chips'),
-  mapImg:            document.getElementById('map-img'),
-  mapPlaceholder:    document.getElementById('map-placeholder'),
+  mapLeaflet:        document.getElementById('map-leaflet'),
   displayText:       document.getElementById('display-text'),
   displayPlaceholder:document.getElementById('display-placeholder'),
   keypadDisplay:     document.getElementById('keypad-display'),
@@ -95,6 +93,8 @@ function loadTrack(track, autoplay) {
   updatePlayerUI();
   updateMediaSession();
   dom.miniPlayer.classList.add('visible');
+  document.body.classList.add('has-player');
+  if (leafletMap) refreshPlayingMarker();
 }
 
 function updatePlayerUI() {
@@ -310,37 +310,81 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Backspace' || e.key === 'Delete') { handleKey('DEL'); return; }
 });
 
-/* ===== Map Tab ===== */
-function buildMapChips() {
-  dom.mapChips.innerHTML = '';
-  manifest.maps.forEach(m => {
-    const btn = document.createElement('button');
-    btn.className = 'map-chip';
-    btn.setAttribute('role', 'listitem');
-    btn.textContent = `${m.id} ${m.title}`;
-    btn.dataset.mapId = m.id;
-    btn.addEventListener('click', () => selectMap(m.id));
-    dom.mapChips.appendChild(btn);
+/* ===== Map Tab (Leaflet) ===== */
+let leafletMap = null;
+let spotMarkers = {};        // code -> L.Marker
+let userMarker = null;       // L.Marker for current position
+
+function makeSpotIcon(code, isPlaying) {
+  return L.divIcon({
+    className: 'spot-marker',
+    html: `<div class="spot-pin${isPlaying ? ' playing' : ''}">${code}</div>`,
+    iconSize: [30, 30],
+    iconAnchor: [15, 15],
+    popupAnchor: [0, -16],
   });
 }
 
-function selectMap(id) {
-  const m = manifest.maps.find(x => x.id === id);
-  if (!m) return;
-
-  // Update chip selection
-  document.querySelectorAll('.map-chip').forEach(c => {
-    c.classList.toggle('selected', c.dataset.mapId === id);
+function makeUserIcon() {
+  return L.divIcon({
+    className: 'user-marker',
+    html: '<div class="user-dot"></div>',
+    iconSize: [18, 18],
+    iconAnchor: [9, 9],
   });
+}
 
-  // Update image
-  dom.mapImg.src = m.file;
-  dom.mapImg.alt = `マップ ${m.id}: ${m.title}`;
-  dom.mapImg.style.display = 'block';
-  dom.mapPlaceholder.style.display = 'none';
+function initLeaflet() {
+  if (leafletMap || !manifest) return;
+  const pts = manifest.tracks.filter(t => typeof t.lat === 'number');
+  if (pts.length === 0) return;
 
-  // Persist
-  try { localStorage.setItem('vots-last-map', id); } catch (_) {}
+  leafletMap = L.map('map-leaflet', { zoomControl: true, attributionControl: true });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
+    maxZoom: 19,
+    minZoom: 15,
+  }).addTo(leafletMap);
+
+  const bounds = L.latLngBounds(pts.map(t => [t.lat, t.lng]));
+  leafletMap.fitBounds(bounds, { padding: [30, 30] });
+
+  for (const t of pts) {
+    const marker = L.marker([t.lat, t.lng], { icon: makeSpotIcon(t.code, false), title: `${t.code} ${t.title}` }).addTo(leafletMap);
+    const enLine = t.en ? `<span class="popup-en">${t.en}</span>` : '';
+    marker.bindPopup(
+      `<span class="popup-title">${t.code} ${t.title}</span>${enLine}<button class="popup-play" data-code="${t.code}">▶ 再生</button>`,
+      { closeButton: false }
+    );
+    marker.on('popupopen', (e) => {
+      const btn = e.popup.getElement().querySelector('.popup-play');
+      if (btn) btn.addEventListener('click', () => {
+        const track = findTrack(t.code);
+        if (track) { loadTrack(track, true); leafletMap.closePopup(); }
+      });
+    });
+    spotMarkers[t.code] = marker;
+  }
+}
+
+function refreshPlayingMarker() {
+  for (const code in spotMarkers) {
+    const isPlaying = currentTrack && currentTrack.series === 'track' && currentTrack.code === code;
+    spotMarkers[code].setIcon(makeSpotIcon(code, isPlaying));
+  }
+}
+
+function setUserPosition(lat, lng) {
+  if (!leafletMap) return;
+  if (!userMarker) {
+    userMarker = L.marker([lat, lng], { icon: makeUserIcon(), zIndexOffset: 1000, interactive: false }).addTo(leafletMap);
+  } else {
+    userMarker.setLatLng([lat, lng]);
+  }
+}
+
+function clearUserPosition() {
+  if (userMarker && leafletMap) { leafletMap.removeLayer(userMarker); userMarker = null; }
 }
 
 /* ===== Tab switching ===== */
@@ -357,6 +401,12 @@ function switchTab(tab) {
   const target = '#' + (isMap ? 'map' : 'guide');
   if (location.hash !== target) {
     history.replaceState(null, '', target);
+  }
+
+  if (isMap) {
+    // Lazy-init map on first reveal so it has a real size
+    initLeaflet();
+    if (leafletMap) setTimeout(() => leafletMap.invalidateSize(), 0);
   }
 }
 
@@ -435,6 +485,7 @@ function fmtDist(m) {
 
 function updateNearby(pos) {
   const { latitude, longitude } = pos.coords;
+  setUserPosition(latitude, longitude);
   const best = findNearest(latitude, longitude);
   dom.btnGeo.classList.remove('locating');
 
@@ -497,6 +548,7 @@ function stopGeo() {
   dom.nearbyBanner.classList.remove('visible', 'changed');
   document.body.classList.remove('nearby-active');
   nearbyTrack = null;
+  clearUserPosition();
   try { localStorage.setItem('vots-geo-enabled', '0'); } catch (_) {}
 }
 
@@ -530,17 +582,7 @@ async function init() {
     return;
   }
 
-  buildMapChips();
-
-  // Restore last map from localStorage
-  try {
-    const lastMap = localStorage.getItem('vots-last-map');
-    if (lastMap && manifest.maps.find(m => m.id === lastMap)) {
-      selectMap(lastMap);
-    }
-  } catch (_) {}
-
-  // Restore tab from URL hash
+  // Restore tab from URL hash (initLeaflet is triggered if map tab becomes active)
   restoreTabFromHash();
 
   // Restore geolocation toggle
