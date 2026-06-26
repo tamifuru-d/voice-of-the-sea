@@ -8,7 +8,7 @@
 
 'use strict';
 
-const CACHE_VERSION = 'vots-v7';
+const CACHE_VERSION = 'vots-v8';
 const SHELL_ASSETS = [
   './',
   './index.html',

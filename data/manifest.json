@@ -20,7 +20,7 @@
       "title": "メディテレーニアンハーバー",
       "en": "Mediterranean Harbor",
       "file": "audio/02.mp3",
-      "lat": 35.626882,
+      "lat": 35.6267,
       "lng": 139.887937
     },
     {
@@ -28,7 +28,7 @@
       "title": "パラッツォ・カナル",
       "en": "Palazzo Canal",
       "file": "audio/03.mp3",
-      "lat": 35.6264,
+      "lat": 35.62633,
       "lng": 139.888072
     },
     {
@@ -236,8 +236,8 @@
       "title": "マーメイドラグーン",
       "en": "Mermaid Lagoon",
       "file": "audio/29.mp3",
-      "lat": 35.6272,
-      "lng": 139.8819
+      "lat": 35.627115,
+      "lng": 139.882811
     },
     {
       "code": "30",
@@ -300,8 +300,8 @@
       "title": "ユカタン・ベースキャンプ・グリル",
       "en": "Yucatan Base Camp Grill",
       "file": "audio/37.mp3",
-      "lat": 35.6275,
-      "lng": 139.8818
+      "lat": 35.627458,
+      "lng": 139.881396
     },
     {
       "code": "38",
@@ -316,7 +316,7 @@
       "title": "ロストリバーの橋たち",
       "en": "Bridges",
       "file": "audio/39.mp3",
-      "lat": 35.6265,
+      "lat": 35.6262,
       "lng": 139.8817
     },
     {
@@ -332,8 +332,8 @@
       "title": "トランジットスチーマーライン",
       "en": "Transit Steamer Line",
       "file": "audio/41.mp3",
-      "lat": 35.62815,
-      "lng": 139.881094
+      "lat": 35.626788,
+      "lng": 139.882052
     },
     {
       "code": "94",
