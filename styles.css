@@ -188,7 +188,7 @@ body.nearby-active #map-view.active { top: calc(var(--header-h) + 48px); }
 #map-leaflet {
   width: 100%;
   height: 100%;
-  background: #0a1a2c;
+  background: #e8e4d8;
 }
 
 /* Custom spot markers */
